@@ -1,0 +1,13 @@
+services:
+  captioning:
+    build: .
+    image: image-captioning-vlm:latest
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env.example
+    volumes:
+      # keep downloaded model weights between runs
+      - hf_cache:/home/appuser/.cache/huggingface
+volumes:
+  hf_cache:
